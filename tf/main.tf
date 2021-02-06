@@ -1,11 +1,5 @@
-resource "aws_s3_bucket" "gte-dash-prod" {
-  bucket = "gte-dash.edkelly.co.uk"
-  acl    = "public-read"
-
-  website {
-    index_document = "index.html"
-    error_document = "index.html"
-  }
+resource "aws_s3_bucket" "gte-dash-pwa-prod" {
+  bucket = "gte-dash-pwa-prod"
 }
 
 resource "aws_ssm_parameter" "gte-dash-secret-key" {
