@@ -50,8 +50,6 @@ const styles = theme => ({
 });
 
 const Details = ({ classes, vehicle }) => {
-  console.log(vehicle);
-
   const {
     latitude,
     longitude,
