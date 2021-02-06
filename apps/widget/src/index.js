@@ -29,7 +29,7 @@ const createWindow = () => {
     resizable: false
   });
   
-  mainWindow.loadURL('http://localhost:3000');
+  mainWindow.loadURL('https://d2vqpt7xkwf2ls.cloudfront.net');
 
   mainWindow.on('closed', () => {
     mainWindow = null
