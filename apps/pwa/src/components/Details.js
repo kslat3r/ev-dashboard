@@ -8,14 +8,14 @@ import BatteryCharging60Icon from '@material-ui/icons/BatteryCharging60';
 import BatteryCharging80Icon from '@material-ui/icons/BatteryCharging80';
 import BatteryCharging90Icon from '@material-ui/icons/BatteryCharging90';
 import BatteryChargingFullIcon from '@material-ui/icons/BatteryChargingFull';
-import Battery20Icon from '@material-ui/icons/BatteryCharging20';
-import Battery30Icon from '@material-ui/icons/BatteryCharging30';
-import Battery50Icon from '@material-ui/icons/BatteryCharging50';
-import Battery60Icon from '@material-ui/icons/BatteryCharging60';
-import Battery80Icon from '@material-ui/icons/BatteryCharging80';
-import Battery90Icon from '@material-ui/icons/BatteryCharging90';
-import BatteryFullIcon from '@material-ui/icons/BatteryChargingFull';
-import LocalGasStationIcon from '@material-ui/icons/LocalGasStation';
+import Battery20Icon from '@material-ui/icons/Battery20';
+import Battery30Icon from '@material-ui/icons/Battery30';
+import Battery50Icon from '@material-ui/icons/Battery50';
+import Battery60Icon from '@material-ui/icons/Battery60';
+import Battery80Icon from '@material-ui/icons/Battery80';
+import Battery90Icon from '@material-ui/icons/Battery90';
+import BatteryFullIcon from '@material-ui/icons/BatteryFull';
+import DirectionsCarIcon from '@material-ui/icons/DirectionsCar';
 
 const icons = {
   BatteryCharging20Icon,
@@ -50,6 +50,8 @@ const styles = theme => ({
 });
 
 const Details = ({ classes, vehicle }) => {
+  console.log(vehicle);
+
   const {
     latitude,
     longitude,
@@ -137,7 +139,7 @@ const Details = ({ classes, vehicle }) => {
             horizontal: 'left',
           }}
         >
-          <LocalGasStationIcon
+          <DirectionsCarIcon
             color="primary"
             className={classes.icon}
           />

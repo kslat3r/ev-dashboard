@@ -15,8 +15,8 @@
     "electron-builder": "^22.9.1"
   },
   "build": {
-    "productName": "GTE Dash",
-    "appId": "com.edkelly.ev-dashboard",
+    "productName": "EV Dashboard",
+    "appId": "com.edkelly.evdashboard",
     "extraResources": [
       "./assets/**"
     ],

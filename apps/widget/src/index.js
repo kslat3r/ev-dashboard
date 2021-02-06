@@ -11,7 +11,7 @@ const height = 500;
 
 const createWindow = () => {
   tray = new Tray(app.isPackaged ? `${path.join(process.resourcesPath, 'assets')}/tray-icon.png` : `${__dirname}/../assets/tray-icon.png`);
-  tray.setToolTip('GTE Dash');
+  tray.setToolTip('EV Dashboard');
 
   tray.on('click', () => {
     const cursorPosition = electron.screen.getCursorScreenPoint();
