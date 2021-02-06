@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "gte-dash-prod" {
-  bucket = "gte-dash-prod"
+  bucket = "gte-dash.edkelly.co.uk"
   acl    = "public-read"
 
   website {
