@@ -1,6 +1,19 @@
 service: ev-dashboard-api
 frameworkVersion: '2'
 
+plugins:
+  - serverless-api-gateway-caching
+
+custom:
+  apiGatewayCaching:
+    enabled: true
+    clusterSize: '0.5'
+    ttlInSeconds: 3600
+    dataEncrypted: false
+    perKeyInvalidation:
+      requireAuthorization: true # default is true
+      handleUnauthorizedRequests: Ignore # default is "IgnoreWithWarning".
+
 provider:
   name: aws
   runtime: nodejs12.x
@@ -23,12 +36,16 @@ functions:
       SMARTCAR_REDIRECT_URI: https://javascript-sdk.smartcar.com/v2/redirect?app_origin=https://d17f0ehhxwd38n.cloudfront.net
       #SMARTCAR_REDIRECT_URI: https://javascript-sdk.smartcar.com/v2/redirect?app_origin=http://localhost:3000
     events:
-      - httpApi:
+      - http:
           path: /exchange
           method: get
   vehicle:
     handler: handler.vehicle
     events:
-      - httpApi:
+      - http:
           path: /vehicle
           method: get
+          caching:
+            enabled: true
+            cacheKeyParameters:
+              - name: request.querystring.accessToken
