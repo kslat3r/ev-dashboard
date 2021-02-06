@@ -1,0 +1,33 @@
+service: gte-dash-api
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  lambdaHashingVersion: 20201221
+  apiGateway:
+    shouldStartNameWithService: true
+
+  stage: v1
+  region: eu-west-2
+
+  httpApi:
+    cors: true
+
+functions:
+  exchange:
+    handler: handler.exchange
+    environment:
+      SMARTCAR_CLIENT_ID: ea125c5b-bda1-41a6-a33f-e1c0c9c33779
+      SMARTCAR_CLIENT_SECRET: ${ssm:/gte-dash-secret-key~true}
+      SMARTCAR_REDIRECT_URI: https://javascript-sdk.smartcar.com/v2/redirect?app_origin=http://gte-dash.edkelly.co.uk
+    events:
+      - httpApi:
+          path: /exchange
+          method: get
+  vehicle:
+    handler: handler.vehicle
+    events:
+      - httpApi:
+          path: /vehicle
+          method: get

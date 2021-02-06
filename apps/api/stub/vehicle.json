@@ -1,0 +1,12 @@
+{
+  "id": "f5eb8c96-af8d-4fd9-9149-b59dd0dcb900",
+  "make": "VOLKSWAGEN",
+  "model": "eGolf",
+  "year": 2016,
+  "latitude": 38.09284973144531,
+  "longitude": -107.71614074707031,
+  "range": 121.66,
+  "percentRemaining": 0.43,
+  "state": "FULLY_CHARGED",
+  "isPluggedIn": false
+}
