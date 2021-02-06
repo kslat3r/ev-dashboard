@@ -28,8 +28,7 @@ class VehicleStore {
       onComplete: async (err, code) => {
         await this.exchange(code);
         await this.fetch();
-      },
-      testMode: true
+      }
     });
 
     this.token = localStorage.getItem('token');

@@ -29,7 +29,7 @@ const createWindow = () => {
     resizable: false
   });
   
-  mainWindow.loadURL('https://d2vqpt7xkwf2ls.cloudfront.net');
+  mainWindow.loadURL('https://d2vqpt7xkwf2ls.cloudfront.net/');
 
   mainWindow.on('closed', () => {
     mainWindow = null
@@ -39,6 +39,8 @@ const createWindow = () => {
 if (app.dock) {
   app.dock.hide();
 }
+
+app.commandLine.appendSwitch('disable-http-cache');
 
 app.on('ready', createWindow);
 

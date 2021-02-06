@@ -16,8 +16,7 @@ module.exports = async (event) => {
       'required:read_charge',
       'required:read_location',
       'required:read_vehicle_info'
-    ],
-    testMode: true
+    ]
   });
 
   let exchanged;
