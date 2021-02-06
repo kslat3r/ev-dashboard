@@ -31,7 +31,7 @@ const createWindow = () => {
     resizable: false
   });
   
-  mainWindow.loadURL('https://d2vqpt7xkwf2ls.cloudfront.net/');
+  mainWindow.loadURL('https://d17f0ehhxwd38n.cloudfront.net/');
 
   mainWindow.on('closed', () => {
     mainWindow = null

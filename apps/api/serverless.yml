@@ -20,7 +20,7 @@ functions:
     environment:
       SMARTCAR_CLIENT_ID: ea125c5b-bda1-41a6-a33f-e1c0c9c33779
       SMARTCAR_CLIENT_SECRET: ${ssm:/ev-dashboard-secret-key~true}
-      SMARTCAR_REDIRECT_URI: https://javascript-sdk.smartcar.com/v2/redirect?app_origin=https://d2vqpt7xkwf2ls.cloudfront.net
+      SMARTCAR_REDIRECT_URI: https://javascript-sdk.smartcar.com/v2/redirect?app_origin=https://d17f0ehhxwd38n.cloudfront.net
     events:
       - httpApi:
           path: /exchange
