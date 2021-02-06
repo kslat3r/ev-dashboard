@@ -76,7 +76,7 @@ workflows:
               branches:
                 only: master
 
-  engine:
+  api:
     when: << pipeline.parameters.api >>
     jobs:
       - api-deploy
