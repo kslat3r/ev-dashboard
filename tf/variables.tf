@@ -1,3 +1,3 @@
-variable "gte-dash-secret-key" {
+variable "ev-dashboard-secret-key" {
   type = string
 }

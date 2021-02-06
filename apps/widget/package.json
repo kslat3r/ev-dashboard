@@ -1,5 +1,5 @@
 {
-  "name": "gte-dash-widget",
+  "name": "ev-dashboard-widget",
   "version": "1.0.0",
   "description": "View your electric car location and charge",
   "author": "",
@@ -16,7 +16,7 @@
   },
   "build": {
     "productName": "GTE Dash",
-    "appId": "com.edkelly.gte-dash",
+    "appId": "com.edkelly.ev-dashboard",
     "extraResources": [
       "./assets/**"
     ],

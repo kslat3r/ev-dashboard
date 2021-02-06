@@ -60,7 +60,7 @@ jobs:
             npm run build
       - aws-s3/sync:
           from: apps/pwa/build
-          to: 's3://gte-dash-pwa-prod/'
+          to: 's3://ev-dashboard-pwa-prod/'
           arguments: |
             --acl public-read \
             --cache-control "max-age=86400"

@@ -10,5 +10,5 @@ terraform {
 provider "aws" {
   region = "eu-west-2"
   shared_credentials_file = "./creds"
-  profile = "gte-dash"
+  profile = "ev-dashboard"
 }
