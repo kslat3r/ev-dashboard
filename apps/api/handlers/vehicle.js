@@ -14,7 +14,14 @@ module.exports = async (event) => {
   try {
     response = await smartcar.getVehicleIds(accessToken);
   } catch (error) {
-    return { statusCode: 500, body: JSON.stringify( error )};
+    return {
+      statusCode: 500, 
+      body: JSON.stringify( error ),
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true,
+      }
+    };
   }
 
   const id = response.vehicles[0];
@@ -34,11 +41,22 @@ module.exports = async (event) => {
   } catch (error) {
     console.error(error);
 
-    return { statusCode: 500, body: JSON.stringify( error )};
+    return {
+      statusCode: 500, 
+      body: JSON.stringify(error),
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true,
+      }
+    };
   }
 
   return {
     statusCode: 200,
-    body: JSON.stringify(Object.assign({}, ...responses.map(resp => resp.data ? resp.data : resp)))
+    body: JSON.stringify(Object.assign({}, ...responses.map(resp => resp.data ? resp.data : resp))),
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Credentials': true,
+    }
   };
 };

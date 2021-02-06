@@ -4,7 +4,7 @@ import axios from 'axios';
 
 class VehicleStore {
   client = null
-  timeout = 120000
+  timeout = 10000
 
   @observable token = null
   @observable item = null

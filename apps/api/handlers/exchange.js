@@ -26,8 +26,22 @@ module.exports = async (event) => {
   } catch (error) {
     console.error(error);
 
-    return { statusCode: 400, body: JSON.stringify({ error })};
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ error }),
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true,
+      }
+    };
   }
 
-  return { statusCode: 200, body: JSON.stringify(exchanged) };
+  return {
+    statusCode: 200, 
+    body: JSON.stringify(exchanged),
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Credentials': true,
+    }
+  };
 };

@@ -8,7 +8,7 @@ custom:
   apiGatewayCaching:
     enabled: true
     clusterSize: '0.5'
-    ttlInSeconds: 3600
+    ttlInSeconds: 300
     dataEncrypted: false
     perKeyInvalidation:
       requireAuthorization: true # default is true
@@ -24,9 +24,6 @@ provider:
   stage: v1
   region: eu-west-2
 
-  httpApi:
-    cors: true
-
 functions:
   exchange:
     handler: handler.exchange
@@ -39,12 +36,14 @@ functions:
       - http:
           path: /exchange
           method: get
+          cors: true
   vehicle:
     handler: handler.vehicle
     events:
       - http:
           path: /vehicle
           method: get
+          cors: true
           caching:
             enabled: true
             cacheKeyParameters:
