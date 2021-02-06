@@ -1,3 +1,5 @@
+const process = require('process');
+const path = require('path');
 const { app, BrowserWindow, Tray } = require('electron');
 const electron = require('electron');
 
@@ -8,7 +10,7 @@ const width = 400;
 const height = 500;
 
 const createWindow = () => {
-  tray = new Tray(`${__dirname}/../public/icon.png`)
+  tray = new Tray(app.isPackaged ? `${path.join(process.resourcesPath, 'assets')}/tray-icon.png` : `${__dirname}/../assets/tray-icon.png`);
   tray.setToolTip('GTE Dash');
 
   tray.on('click', () => {

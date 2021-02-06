@@ -1,15 +1,27 @@
 {
   "name": "gte-dash-widget",
   "version": "1.0.0",
-  "description": "",
+  "description": "View your electric car location and charge",
+  "author": "",
   "main": "src/index.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
-  "author": "",
   "license": "ISC",
-  "dependencies": {
+  "devDependencies": {
     "electron": "^11.2.3",
-    "electron-is-dev": "^1.2.0"
+    "electron-builder": "^22.9.1"
+  },
+  "build": {
+    "productName": "GTE Dash",
+    "appId": "com.edkelly.gte-dash",
+    "extraResources": [
+      "./assets/**"
+    ],
+    "mac": {
+      "icon": "assets/app-icon.png"
+    }
   }
 }
