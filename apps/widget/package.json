@@ -1,12 +1,11 @@
 {
   "name": "ev-dashboard-widget",
   "version": "1.0.0",
-  "description": "View your electric car location and charge",
+  "description": "View your electric car location, charge and range levels in your OSX system tray",
   "author": "",
   "main": "src/index.js",
   "scripts": {
     "start": "electron .",
-    "pack": "electron-builder --dir",
     "dist": "electron-builder"
   },
   "license": "ISC",
