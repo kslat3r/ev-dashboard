@@ -97,6 +97,8 @@ class VehicleStore {
         }
 
         this.error = e;
+        this.token = null;
+        this.item = null;
       });
 
       return;

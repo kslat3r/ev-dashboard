@@ -1,4 +1,5 @@
 const smartcar = require('smartcar');
+const response = require('../helpers/response');
 
 module.exports = async (event) => {
   const {
@@ -26,22 +27,8 @@ module.exports = async (event) => {
   } catch (error) {
     console.error(error);
 
-    return {
-      statusCode: 400,
-      body: JSON.stringify({ error }),
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Credentials': true,
-      }
-    };
+    return response(400, error);
   }
 
-  return {
-    statusCode: 200, 
-    body: JSON.stringify(exchanged),
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Credentials': true,
-    }
-  };
+  return response(200, exchanged);
 };

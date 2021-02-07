@@ -1,5 +1,6 @@
 const smartcar = require('smartcar');
-const vehicleStub = require('../stub/vehicle.json');
+const response = require('../helpers/response');
+// const vehicleStub = require('../stub/vehicle.json');
 
 module.exports = async (event) => {
   // return {
@@ -9,22 +10,17 @@ module.exports = async (event) => {
 
   const accessToken = event.queryStringParameters.accessToken;
 
-  let response;
+  let resp;
 
   try {
-    response = await smartcar.getVehicleIds(accessToken);
+    resp = await smartcar.getVehicleIds(accessToken);
   } catch (error) {
-    return {
-      statusCode: 500, 
-      body: JSON.stringify( error ),
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Credentials': true,
-      }
-    };
+    console.log(error);
+
+    return response(500, error);
   }
 
-  const id = response.vehicles[0];
+  const id = resp.vehicles[0];
   const vehicle = new smartcar.Vehicle(id, accessToken);
   
   const funcs = [
@@ -34,29 +30,15 @@ module.exports = async (event) => {
     'charge'
   ];
 
-  let responses;
+  let resps;
 
   try {
-    responses = await Promise.all(funcs.map(func => vehicle[func]()));
+    resps = await Promise.all(funcs.map(func => vehicle[func]()));
   } catch (error) {
     console.error(error);
 
-    return {
-      statusCode: 500, 
-      body: JSON.stringify(error),
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Credentials': true,
-      }
-    };
+    return response(500, error);
   }
 
-  return {
-    statusCode: 200,
-    body: JSON.stringify(Object.assign({}, ...responses.map(resp => resp.data ? resp.data : resp))),
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Credentials': true,
-    }
-  };
+  return response(200, Object.assign({}, ...resps.map(resp => resp.data ? resp.data : resp)));
 };
