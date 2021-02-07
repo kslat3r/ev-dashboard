@@ -75,7 +75,7 @@ const Details = ({ classes, vehicle }) => {
     iconPrefix += 'Charging';
   }
 
-  percentRemaining *= (percentRemaining * 100).toFixed(2);
+  percentRemaining = (percentRemaining * 100).toFixed(2);
 
   if (percentRemaining <= 20) {
     iconPrefix += '20';
@@ -117,8 +117,8 @@ const Details = ({ classes, vehicle }) => {
           badgeContent={`${percentRemaining}%`}
           color="secondary"
           anchorOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
+            vertical: 'bottom',
+            horizontal: 'left',
           }}
         >
           <BatteryIcon
