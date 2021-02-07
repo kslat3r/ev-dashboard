@@ -15,7 +15,6 @@ import Battery60Icon from '@material-ui/icons/Battery60';
 import Battery80Icon from '@material-ui/icons/Battery80';
 import Battery90Icon from '@material-ui/icons/Battery90';
 import BatteryFullIcon from '@material-ui/icons/BatteryFull';
-import DirectionsCarIcon from '@material-ui/icons/DirectionsCar';
 
 const icons = {
   BatteryCharging20Icon,
@@ -53,8 +52,7 @@ const Details = ({ classes, vehicle }) => {
   const {
     latitude,
     longitude,
-    isPluggedIn,
-    range
+    isPluggedIn
   } = vehicle;
 
   let {
@@ -77,7 +75,7 @@ const Details = ({ classes, vehicle }) => {
     iconPrefix += 'Charging';
   }
 
-  percentRemaining *= percentRemaining * 100;
+  percentRemaining *= (percentRemaining * 100).toFixed(2);
 
   if (percentRemaining <= 20) {
     iconPrefix += '20';
@@ -119,25 +117,11 @@ const Details = ({ classes, vehicle }) => {
           badgeContent={`${percentRemaining}%`}
           color="secondary"
           anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
+            vertical: 'top',
+            horizontal: 'right',
           }}
         >
           <BatteryIcon
-            color="primary"
-            className={classes.icon}
-          />
-        </Badge>
-
-        <Badge
-          badgeContent={`${range} mi`}
-          color="secondary"
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
-          }}
-        >
-          <DirectionsCarIcon
             color="primary"
             className={classes.icon}
           />
