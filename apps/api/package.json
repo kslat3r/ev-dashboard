@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "memcached": "^2.2.2",
     "smartcar": "^7.7.0"
   },
   "devDependencies": {

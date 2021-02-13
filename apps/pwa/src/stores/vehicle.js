@@ -22,8 +22,7 @@ class VehicleStore {
       scope: [
         'required:read_battery',
         'required:read_charge',
-        'required:read_location',
-        'required:read_vehicle_info'
+        'required:read_location'
       ],
       onComplete: async (err, code) => {
         await this.exchange(code);

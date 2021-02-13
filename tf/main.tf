@@ -53,3 +53,12 @@ resource "aws_cloudfront_distribution" "ev-dashboard-ssl" {
     cloudfront_default_certificate = true
   }
 }
+
+resource "aws_elasticache_cluster" "ev-dashboard-cache" {
+  cluster_id = "ev-dashboard-cache"
+  engine = "memcached"
+  node_type = "cache.t2.micro"
+  num_cache_nodes = 1
+  parameter_group_name = "default.memcached1.6"
+  port = 11211
+}

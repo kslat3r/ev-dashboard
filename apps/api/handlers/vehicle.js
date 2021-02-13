@@ -1,13 +1,9 @@
 const smartcar = require('smartcar');
-const response = require('../helpers/response');
-// const vehicleStub = require('../stub/vehicle.json');
+const respond = require('../helpers/respond');
+const getCache = require('../helpers/get-cache');
+const putCache = require('../helpers/put-cache');
 
 module.exports = async (event) => {
-  // return {
-  //   statusCode: 200,
-  //   body: JSON.stringify(vehicleStub)
-  // };
-
   const accessToken = event.queryStringParameters.accessToken;
 
   let resp;
@@ -17,14 +13,28 @@ module.exports = async (event) => {
   } catch (error) {
     console.log(error);
 
-    return response(500, error);
+    return respond(500, error);
   }
 
   const id = resp.vehicles[0];
+
+  let cache;
+
+  try {
+    cache = await getCache(id);
+  } catch (error) {
+    console.log(error);
+
+    return respond(500, error);
+  }
+
+  if (cache) {
+    return respond(200, cache);
+  }
+
   const vehicle = new smartcar.Vehicle(id, accessToken);
   
   const funcs = [
-    'info',
     'location',
     'battery',
     'charge'
@@ -37,8 +47,18 @@ module.exports = async (event) => {
   } catch (error) {
     console.error(error);
 
-    return response(500, error);
+    return respond(500, error);
   }
 
-  return response(200, Object.assign({}, ...resps.map(resp => resp.data ? resp.data : resp)));
+  const out = Object.assign({}, ...resps.map(resp => resp.data ? resp.data : resp));
+
+  try {
+    await putCache(id, out);
+  } catch (error) {
+    console.error(error);
+
+    return respond(500, error);
+  }
+
+  return respond(200, out);
 };

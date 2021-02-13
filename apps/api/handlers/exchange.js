@@ -1,5 +1,5 @@
 const smartcar = require('smartcar');
-const response = require('../helpers/response');
+const respond = require('../helpers/respond');
 
 module.exports = async (event) => {
   const {
@@ -15,8 +15,7 @@ module.exports = async (event) => {
     scope: [
       'required:read_battery',
       'required:read_charge',
-      'required:read_location',
-      'required:read_vehicle_info'
+      'required:read_location'
     ]
   });
 
@@ -27,8 +26,8 @@ module.exports = async (event) => {
   } catch (error) {
     console.error(error);
 
-    return response(400, error);
+    return respond(400, error);
   }
 
-  return response(200, exchanged);
+  return respond(200, exchanged);
 };
