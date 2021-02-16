@@ -17,20 +17,24 @@ module.exports = async (event) => {
   }
 
   const id = resp.vehicles[0];
-
+  
   let cache;
 
   try {
     cache = await getCache(id);
   } catch (error) {
-    console.log(error);
+    console.error(error);
 
     return respond(500, error);
   }
 
   if (cache) {
+    console.log(`Cache hit for ${id}`)
+
     return respond(200, cache);
   }
+
+  console.log(`Cache miss for ${id}`)
 
   const vehicle = new smartcar.Vehicle(id, accessToken);
   
@@ -50,7 +54,7 @@ module.exports = async (event) => {
     return respond(500, error);
   }
 
-  const out = Object.assign({}, ...resps.map(resp => resp.data ? resp.data : resp));
+  const out = Object.assign({}, ...resps.map(resp => resp.data));
 
   try {
     await putCache(id, out);

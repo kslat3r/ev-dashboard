@@ -1,13 +1,18 @@
-const getCacheClient = require('./get-cache-client');
+const AWS = require('aws-sdk');
 
-module.exports = (id, data) => new Promise((resolve, reject) => {
-  const client = getCacheClient();
+const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
-  client.set(id, JSON.stringify(data), 300, (err) => {
-    if (err) {
-      return reject(err);
-    }
-
-    return resolve();
-  })
-});
+module.exports = async (id, data) => {
+  try {
+    await dynamoDb.put({
+      TableName: 'vehicles',
+      Item: {
+        id,
+        created: new Date().getTime(),
+        data: JSON.stringify(data)
+      },
+    }).promise();
+  } catch (e) {
+    throw e;
+  }
+};

@@ -3,13 +3,24 @@ frameworkVersion: '2'
 
 provider:
   name: aws
-  stage: v1
-  region: eu-west-2
   runtime: nodejs12.x
   lambdaHashingVersion: 20201221
   apiGateway:
     shouldStartNameWithService: true
-  timeout: 60
+  timeout: 20
+
+  stage: v1
+  region: eu-west-2
+
+  httpApi:
+    cors: true
+
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:PutItem
+      Resource: "arn:aws:dynamodb:eu-west-2:690524749915:table/vehicles"
 
 functions:
   exchange:
@@ -19,17 +30,13 @@ functions:
       SMARTCAR_CLIENT_SECRET: ${ssm:/ev-dashboard-secret-key~true}
       SMARTCAR_REDIRECT_URI: https://javascript-sdk.smartcar.com/v2/redirect?app_origin=https://d17f0ehhxwd38n.cloudfront.net
       # SMARTCAR_REDIRECT_URI: https://javascript-sdk.smartcar.com/v2/redirect?app_origin=http://localhost:3000
-      MEMCACHED_HOSTNAME: ev-dashboard-cache.qq1gzm.cfg.euw2.cache.amazonaws.com
-      MEMCACHED_PORT: 11211
     events:
-      - http:
+      - httpApi:
           path: /exchange
           method: get
-          cors: true
   vehicle:
     handler: handler.vehicle
     events:
-      - http:
+      - httpApi:
           path: /vehicle
           method: get
-          cors: true

@@ -54,11 +54,20 @@ resource "aws_cloudfront_distribution" "ev-dashboard-ssl" {
   }
 }
 
-resource "aws_elasticache_cluster" "ev-dashboard-cache" {
-  cluster_id = "ev-dashboard-cache"
-  engine = "memcached"
-  node_type = "cache.t2.micro"
-  num_cache_nodes = 1
-  parameter_group_name = "default.memcached1.6"
-  port = 11211
+resource "aws_dynamodb_table" "ev-dashboard-cache" {
+  name = "vehicles"
+  hash_key = "id"
+  range_key = "created"
+  read_capacity = 5
+  write_capacity = 5
+
+  attribute {
+    name = "id"
+    type = "S"
+  }
+
+  attribute {
+    name = "created"
+    type = "N"
+  }
 }
